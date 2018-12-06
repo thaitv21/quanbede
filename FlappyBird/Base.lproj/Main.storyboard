@@ -155,8 +155,8 @@
                                     <constraint firstAttribute="trailing" secondItem="fYj-eM-uNJ" secondAttribute="trailing" id="oBN-aN-Epo"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jump And Jump" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcn-HO-Nwa">
-                                <rect key="frame" x="69.5" y="50" width="236" height="84.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Jump" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcn-HO-Nwa">
+                                <rect key="frame" x="106.5" y="50" width="162.5" height="84.5"/>
                                 <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -173,9 +173,9 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jump and Jump" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="xiB-zZ-QKB">
-                                                <rect key="frame" x="20" y="202" width="335" height="43"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Jump" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="xiB-zZ-QKB">
+                                                <rect key="frame" x="20" y="162.5" width="335" height="122"/>
+                                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="36"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
