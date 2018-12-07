@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,6 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // reg JPushSDK
         JPUSHService.setup(withOption: nil, appKey: "C392dfb397ea686b5532f6d7",
                            channel: "all", apsForProduction: true)
+        
+        
+        FirebaseApp.configure()
+        
+//        let db = Firestore.firestore()
+//        print(db)
         
         return true
     }
