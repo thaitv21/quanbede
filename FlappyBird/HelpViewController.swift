@@ -32,7 +32,7 @@ class HelpViewController: UIViewController, WKNavigationDelegate {
     
     let labelRelad: UILabel = {
         let label = UILabel()
-        label.text = "网络错误"
+        label.text = NSLocalizedString("Network Error", comment: "")
         label.textColor = .gray
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18)
@@ -43,7 +43,7 @@ class HelpViewController: UIViewController, WKNavigationDelegate {
         let btn = UIButton()
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 10
-        btn.setTitle("请点击重试", for: .normal)
+        btn.setTitle(NSLocalizedString("Tap to retry", comment: ""), for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         btn.backgroundColor = UIColor(red: 52/255, green: 170/255, blue: 252/255, alpha: 1.0)

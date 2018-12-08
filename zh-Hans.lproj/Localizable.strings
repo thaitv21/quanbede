@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  FlappyBird
+
+  Created by Quan Nguyen Dinh on 12/8/18.
+  Copyright © 2018 Fullstack.io. All rights reserved.
+*/
+
+"Network Error" = "网络错误";
+"Tap to retry" = "请点击重试";

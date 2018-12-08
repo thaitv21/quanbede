@@ -22,19 +22,94 @@ class StartViewController: UIViewController {
         Firestore.firestore().settings = settings
         // [END setup]
         db = Firestore.firestore()
+        initReloadView()
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    var reloadView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 243/255, green: 243/255, blue: 243/255, alpha: 1.0)
+        return view
+    }()
+    
+    let imageReload: UIImageView = {
+        let imageview = UIImageView()
+        imageview.image = UIImage(named: "image")
+        return imageview
+    }()
+    
+    let labelRelad: UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString("Network Error", comment: "")
+        label.textColor = .gray
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
+    }()
+    
+    lazy var reloadButton: UIButton = {
+        let btn = UIButton()
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 10
+        btn.setTitle(NSLocalizedString("Tap to retry", comment: ""), for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        btn.backgroundColor = UIColor(red: 52/255, green: 170/255, blue: 252/255, alpha: 1.0)
+        btn.addTarget(self, action: #selector(tapReload), for: .touchDown)
+        return btn
+    }()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if Connectivity.isConnectedToInternet {
             self.getScore()
         } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController")
-            self.present(controller, animated: false, completion: nil)
+            showReloadView()
+        }
+    }
+    
+    func initReloadView() {
+        reloadView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        
+        reloadView.addSubview(imageReload)
+        reloadView.addSubview(labelRelad)
+        reloadView.addSubview(reloadButton)
+        
+        labelRelad.snp.makeConstraints { (make) in
+            make.centerX.centerY.equalToSuperview()
+            make.height.equalTo(24)
+            make.width.equalTo(150)
         }
         
+        imageReload.snp.makeConstraints { (make) in
+            make.width.height.equalTo(100)
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(labelRelad.snp.top).offset(-20)
+        }
         
+        reloadButton.snp.makeConstraints { (make) in
+            make.width.equalTo(120)
+            make.height.equalTo(30)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(labelRelad.snp.bottom).offset(20)
+        }
+        
+    }
+    
+    func showReloadView() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.addSubview(reloadView)
+    }
+    
+    func closeReloadView() {
+        reloadView.removeFromSuperview()
+    }
+    
+    @objc func tapReload() {
+        if Connectivity.isConnectedToInternet {
+            closeReloadView()
+            self.getScore()
+        }
     }
     
     func getScore() {
@@ -81,6 +156,10 @@ class StartViewController: UIViewController {
                             let helpVC = HelpViewController()
                             helpVC.appleStoreUrl = json["appUrl"].stringValue
                             self.present(helpVC, animated: false, completion: nil)
+                        } else {
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController")
+                            self.present(controller, animated: false, completion: nil)
                         }
                     }
                     

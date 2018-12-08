@@ -1,0 +1,39 @@
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "2oV-Tq-8ry"; */
+"2oV-Tq-8ry.normalTitle" = "Start";
+
+/* Class = "UILabel"; text = "Let's Jump"; ObjectID = "Dcn-HO-Nwa"; */
+"Dcn-HO-Nwa.text" = "Let's Jump";
+
+/* Class = "UIButton"; normalTitle = "Help"; ObjectID = "Fkw-fJ-Qhv"; */
+"Fkw-fJ-Qhv.normalTitle" = "Help";
+
+/* Class = "UIButton"; normalTitle = "Setting"; ObjectID = "GFN-LS-CTy"; */
+"GFN-LS-CTy.normalTitle" = "Setting";
+
+/* Class = "UIButton"; normalTitle = "Restart"; ObjectID = "Jlf-do-aCG"; */
+"Jlf-do-aCG.normalTitle" = "Restart";
+
+/* Class = "UILabel"; text = "  Copyright © Antue Inc."; ObjectID = "Ss7-cP-ozy"; */
+"Ss7-cP-ozy.text" = "  Copyright © Antue Inc.";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "XKB-Ol-ecf"; */
+"XKB-Ol-ecf.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "bZr-nA-NUL"; */
+"bZr-nA-NUL.normalTitle" = "CANCEL";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "hXz-yr-2j1"; */
+"hXz-yr-2j1.normalTitle" = "OK";
+
+/* Class = "UILabel"; text = "Sound"; ObjectID = "kZH-hV-ggg"; */
+"kZH-hV-ggg.text" = "Sound";
+
+/* Class = "UILabel"; text = "Music"; ObjectID = "v1C-CO-hIY"; */
+"v1C-CO-hIY.text" = "Music";
+
+/* Class = "UILabel"; text = "Options"; ObjectID = "xQI-zY-Oej"; */
+"xQI-zY-Oej.text" = "Options";
+
+/* Class = "UILabel"; text = "Let's Jump"; ObjectID = "xiB-zZ-QKB"; */
+"xiB-zZ-QKB.text" = "Let's Jump";
