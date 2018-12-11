@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // reg JPushSDK
-        JPUSHService.setup(withOption: nil, appKey: "C392dfb397ea686b5532f6d7",
+        JPUSHService.setup(withOption: nil, appKey: "1b8bdd7dcbbeebc284053258",
                            channel: "all", apsForProduction: true)
         
         

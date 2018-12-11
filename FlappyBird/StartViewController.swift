@@ -115,6 +115,9 @@ class StartViewController: UIViewController {
     func getScore() {
         db.collection("scores").getDocuments() { (querySnapshot, err) in
             if let err = err {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController")
+                self.present(controller, animated: false, completion: nil)
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
