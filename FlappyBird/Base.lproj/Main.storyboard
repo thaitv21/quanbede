@@ -108,13 +108,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Obj-2l-H9Q">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright © Antue Inc." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ss7-cP-ozy">
-                                        <rect key="frame" x="20" y="626.5" width="335" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Jump Now" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="xiB-zZ-QKB">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample" translatesAutoresizingMaskIntoConstraints="NO" id="dBW-OY-M1e">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DC's Jump" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="xiB-zZ-QKB">
                                         <rect key="frame" x="20" y="162.5" width="335" height="122"/>
                                         <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="36"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -124,11 +121,12 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="xiB-zZ-QKB" firstAttribute="leading" secondItem="Obj-2l-H9Q" secondAttribute="leading" constant="20" symbolic="YES" id="1Pb-Lz-mG5"/>
-                                    <constraint firstAttribute="centerX" secondItem="Ss7-cP-ozy" secondAttribute="centerX" id="32I-DK-LrH"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ss7-cP-ozy" secondAttribute="bottom" constant="20" id="GRY-b2-La9"/>
+                                    <constraint firstAttribute="trailing" secondItem="dBW-OY-M1e" secondAttribute="trailing" id="9Iw-Cb-TW9"/>
+                                    <constraint firstAttribute="bottom" secondItem="dBW-OY-M1e" secondAttribute="bottom" id="KP0-Or-85l"/>
+                                    <constraint firstItem="dBW-OY-M1e" firstAttribute="leading" secondItem="Obj-2l-H9Q" secondAttribute="leading" id="Smh-tP-P1B"/>
+                                    <constraint firstItem="dBW-OY-M1e" firstAttribute="top" secondItem="Obj-2l-H9Q" secondAttribute="top" id="TaG-di-Lyw"/>
                                     <constraint firstItem="xiB-zZ-QKB" firstAttribute="centerY" secondItem="Obj-2l-H9Q" secondAttribute="bottom" multiplier="1/3" constant="1" id="cwF-3v-UDd"/>
                                     <constraint firstAttribute="centerX" secondItem="xiB-zZ-QKB" secondAttribute="centerX" id="jZ1-br-VzD"/>
-                                    <constraint firstItem="Ss7-cP-ozy" firstAttribute="leading" secondItem="Obj-2l-H9Q" secondAttribute="leading" constant="20" symbolic="YES" id="pOP-EJ-ItX"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -143,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ph5-rJ-kRE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1296" y="8"/>
+            <point key="canvasLocation" x="-1296.8" y="7.6461769115442282"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="doC-ef-FjV">
@@ -207,8 +205,8 @@
                                     <constraint firstAttribute="trailing" secondItem="fYj-eM-uNJ" secondAttribute="trailing" id="oBN-aN-Epo"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Jump Now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcn-HO-Nwa">
-                                <rect key="frame" x="64" y="50" width="247.5" height="84.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DC's Jump" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcn-HO-Nwa">
+                                <rect key="frame" x="99" y="50" width="177.5" height="84.5"/>
                                 <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
