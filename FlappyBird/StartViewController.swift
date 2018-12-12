@@ -61,11 +61,54 @@ class StartViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if Connectivity.isConnectedToInternet {
-            self.getScore()
-        } else {
-            showReloadView()
+        checkVersionAvailable { (status, error) in
+            if status {
+                if Connectivity.isConnectedToInternet {
+                    self.getScore()
+                } else {
+                    self.showReloadView()
+                }
+            } else {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController")
+                self.present(controller, animated: false, completion: nil)
+            }
         }
+        
+    }
+    
+    func checkVersionAvailable(completion: @escaping (Bool, Error?) -> Void) {
+        guard let info = Bundle.main.infoDictionary,
+            let currentVersion = info["CFBundleShortVersionString"] as? String,
+            let identifier = info["CFBundleIdentifier"] as? String else { return }
+        
+        let headers = [
+            "cache-control": "no-cache"
+        ]
+        
+        let request = NSMutableURLRequest(url: NSURL(string: "http://itunes.apple.com/lookup?bundleId=\(identifier)")! as URL,
+                                          cachePolicy: .useProtocolCachePolicy,
+                                          timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+                completion(false, error)
+            } else {
+                if let json = data {
+                    let result = JSON(json)
+                    let version = result["results"][0]["version"].stringValue
+                    if version == "" || currentVersion != version {
+                        completion( false, nil)
+                    } else {
+                        completion( true, nil)
+                    }
+                }
+            }
+        })
+        
+        dataTask.resume()
     }
     
     func initReloadView() {
@@ -113,29 +156,28 @@ class StartViewController: UIViewController {
     }
     
     func getScore() {
-        db.collection("scores").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController")
-                self.present(controller, animated: false, completion: nil)
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    let data = document.data()
-                    if let dt = data["data"] as? [String: String] {
-                        if let score = dt["score"] {
-                            if score == "300" {
-                                self.configure()
-                            } else {
-                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController")
-                                self.present(controller, animated: false, completion: nil)
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        self.configure()
+//        db.collection("scores").getDocuments() { (querySnapshot, err) in
+//            if let err = err {
+//
+//                print("Error getting documents: \(err)")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    let data = document.data()
+//                    if let dt = data["data"] as? [String: String] {
+//                        if let score = dt["score"] {
+//                            if score == "300" {
+//
+//                            } else {
+//                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                                let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController")
+//                                self.present(controller, animated: false, completion: nil)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
     
 
