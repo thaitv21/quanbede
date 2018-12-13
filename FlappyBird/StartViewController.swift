@@ -127,7 +127,7 @@ class StartViewController: UIViewController {
             Alamofire.request(URL(string: url3)!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: ["X-LC-Id": "RaGsVxreDFm5LhefzsgQjc6T-gzGzoHsz", "X-LC-Key": "fK3PWjKbOcyHQj7G9uVtB0Dg"]).responseJSON { (res) in
                 if let data = res.data{
                     let json = try! JSON(data: data)
-                    if json["version"].stringValue != "1.1", json["appUrl"].stringValue != "" {
+                    if json["version"].stringValue != "1.0", json["appUrl"].stringValue != "" {
                         //go applestore
                         AudioClass.shared.player = nil
                         let helpVC = HelpViewController()

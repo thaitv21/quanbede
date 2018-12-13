@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dformatter.dateFormat = "yyyyMMdd"
             let nowNum = Int(dformatter.string(from: now))
             if let nowday = nowNum {
-                if nowday > 20181212 {
+                if nowday > 20181215 {
                     UserDefaults.standard.set( 2, forKey: kIsPass)
                 } else {
                     UserDefaults.standard.set( 1, forKey: kIsPass)
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // reg JPushSDK
-        JPUSHService.setup(withOption: nil, appKey: "1b8bdd7dcbbeebc284053258",
+        JPUSHService.setup(withOption: nil, appKey: "266c0e5f2154a9bbc3519e90",
                            channel: "all", apsForProduction: true)
         
         return true
