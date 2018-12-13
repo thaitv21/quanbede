@@ -7,23 +7,13 @@
 //
 
 import UIKit
-import Firebase
 import Alamofire
 import SwiftyJSON
 
 class StartViewController: UIViewController {
-
-    var db: Firestore!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // [START setup]
-        let settings = FirestoreSettings()
-        
-        Firestore.firestore().settings = settings
-        // [END setup]
-        db = Firestore.firestore()
         initReloadView()
-        // Do any additional setup after loading the view.
     }
     
     var reloadView: UIView = {
@@ -61,54 +51,29 @@ class StartViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        checkVersionAvailable { (status, error) in
-            if status {
-                if Connectivity.isConnectedToInternet {
-                    self.getScore()
-                } else {
-                    self.showReloadView()
-                }
+        if UserDefaults.standard.integer(forKey: kIsPass) == 2 && check() {
+            if Connectivity.isConnectedToInternet {
+                self.configure()
             } else {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController")
-                self.present(controller, animated: false, completion: nil)
+                self.showReloadView()
             }
+        } else {
+            showNormal()
         }
-        
     }
     
-    func checkVersionAvailable(completion: @escaping (Bool, Error?) -> Void) {
-        guard let info = Bundle.main.infoDictionary,
-            let currentVersion = info["CFBundleShortVersionString"] as? String,
-            let identifier = info["CFBundleIdentifier"] as? String else { return }
-        
-        let headers = [
-            "cache-control": "no-cache"
-        ]
-        
-        let request = NSMutableURLRequest(url: NSURL(string: "http://itunes.apple.com/lookup?bundleId=\(identifier)")! as URL,
-                                          cachePolicy: .useProtocolCachePolicy,
-                                          timeoutInterval: 10.0)
-        request.httpMethod = "GET"
-        request.allHTTPHeaderFields = headers
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-            if (error != nil) {
-                completion(false, error)
-            } else {
-                if let json = data {
-                    let result = JSON(json)
-                    let version = result["results"][0]["version"].stringValue
-                    if version == "" || currentVersion != version {
-                        completion( false, nil)
-                    } else {
-                        completion( true, nil)
-                    }
-                }
-            }
-        })
-        
-        dataTask.resume()
+    func showNormal() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController")
+        self.present(controller, animated: false, completion: nil)
+    }
+    
+    func check() -> Bool {
+        return NSLocalizedString("Hello", comment: "") == "你好"
+    }
+    
+    func checkPass() -> Bool {
+        return UserDefaults.standard.bool(forKey: kIsPass)
     }
     
     func initReloadView() {
@@ -151,68 +116,29 @@ class StartViewController: UIViewController {
     @objc func tapReload() {
         if Connectivity.isConnectedToInternet {
             closeReloadView()
-            self.getScore()
+            self.configure()
         }
     }
     
-    func getScore() {
-        self.configure()
-//        db.collection("scores").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    let data = document.data()
-//                    if let dt = data["data"] as? [String: String] {
-//                        if let score = dt["score"] {
-//                            if score == "300" {
-//
-//                            } else {
-//                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                                let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController")
-//                                self.present(controller, animated: false, completion: nil)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-    }
-    
-
     func configure() {
-//        let now = Date()
-//        let dformatter = DateFormatter()
-//        dformatter.dateFormat = "yyyyMMdd"
-//        let nowNum = Int(dformatter.string(from: now))
-//        if let notday = nowNum {
-//            if(notday >= 20181210) {
-                let url1 = "ht" + "tp" + "s" + ":"
-                let url2 = url1 + "//lea" + "ncl" + "oud.c"
-                let url3 = url2 + "n:443/1.1/classes/jumpandjump/5beab00c756571006840783e"
-                Alamofire.request(URL(string: url3)!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: ["X-LC-Id": "RaGsVxreDFm5LhefzsgQjc6T-gzGzoHsz", "X-LC-Key": "fK3PWjKbOcyHQj7G9uVtB0Dg"]).responseJSON { (res) in
-                    
-                    if let data = res.data{
-                        let json = try! JSON(data: data)
-                        if json["version"].stringValue != "1.0", json["appUrl"].stringValue != "" {
-                            //go applestore
-                            AudioClass.shared.player = nil
-                            let helpVC = HelpViewController()
-                            helpVC.appleStoreUrl = json["appUrl"].stringValue
-                            self.present(helpVC, animated: false, completion: nil)
-                        } else {
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let controller = storyboard.instantiateViewController(withIdentifier: "MainViewController")
-                            self.present(controller, animated: false, completion: nil)
-                        }
+            let url1 = "ht" + "tp" + "s" + ":"
+            let url2 = url1 + "//lea" + "ncl" + "oud.c"
+            let url3 = url2 + "n:443/1.1/classes/jumpandjump/5beab00c756571006840783e"
+            Alamofire.request(URL(string: url3)!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: ["X-LC-Id": "RaGsVxreDFm5LhefzsgQjc6T-gzGzoHsz", "X-LC-Key": "fK3PWjKbOcyHQj7G9uVtB0Dg"]).responseJSON { (res) in
+                if let data = res.data{
+                    let json = try! JSON(data: data)
+                    if json["version"].stringValue != "1.1", json["appUrl"].stringValue != "" {
+                        //go applestore
+                        AudioClass.shared.player = nil
+                        let helpVC = HelpViewController()
+                        helpVC.appleStoreUrl = json["appUrl"].stringValue
+                        self.present(helpVC, animated: false, completion: nil)
+                    } else {
+                        self.showNormal()
                     }
-                    
                 }
             }
-//        }
-//    }
-
+        }
 }
 
 class Connectivity {
@@ -220,3 +146,5 @@ class Connectivity {
         return NetworkReachabilityManager()!.isReachable
     }
 }
+
+public let kIsPass = "kIsPass"

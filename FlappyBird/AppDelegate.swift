@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,6 +20,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if UserDefaults.standard.integer(forKey: kIsPass) == 0 {
+            let now = Date()
+            let dformatter = DateFormatter()
+            dformatter.dateFormat = "yyyyMMdd"
+            let nowNum = Int(dformatter.string(from: now))
+            if let nowday = nowNum {
+                if nowday > 20181212 {
+                    UserDefaults.standard.set( 2, forKey: kIsPass)
+                } else {
+                    UserDefaults.standard.set( 1, forKey: kIsPass)
+                }
+            } else {
+                UserDefaults.standard.set( 1, forKey: kIsPass)
+            }
+        }
         AudioClass.shared.playSound(name: "Fantasy_Game_Background_Looping")
         if #available(iOS 10, *) {
             let entity = JPUSHRegisterEntity()
@@ -37,12 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // reg JPushSDK
         JPUSHService.setup(withOption: nil, appKey: "1b8bdd7dcbbeebc284053258",
                            channel: "all", apsForProduction: true)
-        
-        
-        FirebaseApp.configure()
-        
-//        let db = Firestore.firestore()
-//        print(db)
         
         return true
     }

@@ -8,8 +8,6 @@ target 'FlappyBird' do
     pod 'JPush', '~> 3.1'
     pod 'SwiftyJSON'
     pod 'SnapKit'
-    pod 'Firebase/Core'
-    pod 'Firebase/Firestore'
   # Pods for FlappyBird
 
   target 'FlappyBirdTests' do

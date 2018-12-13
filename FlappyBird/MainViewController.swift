@@ -10,7 +10,6 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import AVFoundation
-import Firebase
 
 class MainViewController: UIViewController {
     override func viewDidLoad() {
