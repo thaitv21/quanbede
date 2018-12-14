@@ -24,11 +24,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var canRestart = Bool()
     var scoreLabelNode:SKLabelNode!
     var vitalyLabelNode:SKLabelNode!
+    var imageHealth: SKSpriteNode!
     var score = NSInteger()
     var isDead = false
     var jumpCount = 15 {
         didSet {
-            vitalyLabelNode.text = "Jump Count: \(jumpCount)"
+            vitalyLabelNode.text = "\(jumpCount)"
         }
     }
     
@@ -58,6 +59,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         // ground
         let groundTexture = SKTexture(imageNamed: "land")
         groundTexture.filteringMode = .nearest // shorter form for SKTextureFilteringMode.Nearest
+        
+        
         
         let moveGroundSprite = SKAction.moveBy(x: -groundTexture.size().width * 2.0, y: 0, duration: TimeInterval(0.02 * groundTexture.size().width * 2.0))
         let resetGroundSprite = SKAction.moveBy(x: groundTexture.size().width * 2.0, y: 0, duration: 0.0)
@@ -112,30 +115,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         self.run(spawnThenDelayForever)
         
         // setup our bird
-        let birdTexture1 = SKTexture(imageNamed: "Run_000")
+        let birdTexture1 = SKTexture(imageNamed: "egg")
         birdTexture1.filteringMode = .nearest
-        let birdTexture2 = SKTexture(imageNamed: "Run_001")
+        let birdTexture2 = SKTexture(imageNamed: "egg")
         birdTexture2.filteringMode = .nearest
-        let birdTexture3 = SKTexture(imageNamed: "Run_003")
+        let birdTexture3 = SKTexture(imageNamed: "egg")
         birdTexture3.filteringMode = .nearest
-        let birdTexture4 = SKTexture(imageNamed: "Run_004")
+        let birdTexture4 = SKTexture(imageNamed: "egg")
         birdTexture4.filteringMode = .nearest
-        let birdTexture5 = SKTexture(imageNamed: "Run_005")
+        let birdTexture5 = SKTexture(imageNamed: "egg")
         birdTexture5.filteringMode = .nearest
-        let birdTexture6 = SKTexture(imageNamed: "Run_006")
+        let birdTexture6 = SKTexture(imageNamed: "egg")
         birdTexture6.filteringMode = .nearest
-        let birdTexture7 = SKTexture(imageNamed: "Run_007")
+        let birdTexture7 = SKTexture(imageNamed: "egg")
         birdTexture7.filteringMode = .nearest
-        let birdTexture8 = SKTexture(imageNamed: "Run_008")
+        let birdTexture8 = SKTexture(imageNamed: "egg")
         birdTexture8.filteringMode = .nearest
-        let birdTexture9 = SKTexture(imageNamed: "Run_009")
+        let birdTexture9 = SKTexture(imageNamed: "egg")
         birdTexture9.filteringMode = .nearest
         
         let anim = SKAction.animate(with: [birdTexture1, birdTexture2, birdTexture3, birdTexture4, birdTexture5, birdTexture6, birdTexture7, birdTexture8, birdTexture9], timePerFrame: 0.2)
         let flap = SKAction.repeatForever(anim)
         
         bird = SKSpriteNode(texture: birdTexture1)
-        bird.setScale(0.22)
+        bird.setScale(0.35)
         bird.position = CGPoint(x: self.frame.size.width * 0.45, y:self.frame.size.height * 0.6)
         bird.run(flap)
         
@@ -166,12 +169,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         scoreLabelNode.text = "Score: \(score)"
         self.addChild(scoreLabelNode)
         
+        imageHealth = SKSpriteNode(texture: SKTexture(image: UIImage(named: "mushroom_1")!))
+        imageHealth.setScale(0.4)
+        imageHealth.position = CGPoint( x: self.frame.midX + 100, y: self.frame.minY + 70)
         vitalyLabelNode = SKLabelNode(fontNamed:"MarkerFelt-Wide")
         vitalyLabelNode.fontSize = 20
-        vitalyLabelNode.position = CGPoint( x: self.frame.midX + 100, y: self.frame.minY + 70)
+        vitalyLabelNode.position = CGPoint( x: self.frame.midX + 140, y: self.frame.minY + 65)
+        imageHealth.zPosition = 101
         vitalyLabelNode.zPosition = 100
         jumpCount = 15
         self.addChild(vitalyLabelNode)
+        self.addChild(imageHealth)
         
     }
     
@@ -199,7 +207,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         pipePair.addChild(landFly)
         if Int.random(in: 0 ... 6) < 2 {
             let mushroom2 = SKSpriteNode(texture: mushroom2Texture)
-            mushroom2.setScale(1)
+            mushroom2.setScale(0.5)
             mushroom2.position = CGPoint(x: 0.0, y: y + Double(mushroom2.size.height) - 40 )
             mushroom2.physicsBody = SKPhysicsBody(circleOfRadius: mushroom2.size.height/2)
             mushroom2.physicsBody?.isDynamic = false
@@ -208,7 +216,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             pipePair.addChild(mushroom2)
         } else {
             let mushroom1 = SKSpriteNode(texture: mushroom1Texture)
-            mushroom1.setScale(1)
+            mushroom1.setScale(0.6)
             mushroom1.position = CGPoint(x: 0.0, y: y + Double(mushroom1.size.height) + 5)
             mushroom1.physicsBody = SKPhysicsBody(circleOfRadius: mushroom1.size.height/2)
             mushroom1.physicsBody?.isDynamic = false
@@ -266,13 +274,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
     
     override func update(_ currentTime: TimeInterval) {
-        if jumpCount <= 0 {
+        
+        if jumpCount <= 0 || bird.position.x <= 200 {
             moving.speed = 0
             isDead = true
             if let block = self.dieBlock {
                 block(self.score)
             }
+            
             jumpCount = 15
+            bird.position = CGPoint(x: self.frame.size.width * 0.45, y:self.frame.size.height * 0.6)
             bird.physicsBody?.collisionBitMask = worldCategory
             bird.run(  SKAction.rotate(byAngle: CGFloat(Double.pi) * CGFloat(bird.position.y) * 0.03, duration:1), completion:{self.bird.speed = 0 })
             // Flash background if contact is detected
@@ -290,15 +301,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     func didBegin(_ contact: SKPhysicsContact) {
         if contact.bodyB.node?.name == "mush1" {
             contact.bodyB.node?.removeFromParent()
-            jumpCount += 4
+            jumpCount += 2
         } else if contact.bodyB.node?.name == "mush2" {
             contact.bodyB.node?.removeFromParent()
-            jumpCount -= 2
+            jumpCount -= 1
         } else {
             if moving.speed > 0 {
                 if ( contact.bodyA.categoryBitMask & scoreCategory ) == scoreCategory || ( contact.bodyB.categoryBitMask & scoreCategory ) == scoreCategory {
                     // Bird has contact with score entity
                     score += 1
+                    moving.speed = moving.speed + 0.1
                     scoreLabelNode.text = "Score: \(score)"
                     
                     // Add a little visual feedback for the score increment

@@ -48,6 +48,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="sample" width="325" height="375"/>
+        <image name="sample" width="214" height="355"/>
     </resources>
 </document>

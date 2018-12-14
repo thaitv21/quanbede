@@ -54,7 +54,7 @@ class GameViewController: UIViewController {
             skView.presentScene(gameSceen)
             self.gameSceen.dieBlock = { [unowned self] score in
                 self.gameOverView.isHidden = false
-                self.scoreLabel.text = "\(score)"
+                self.scoreLabel.text = "Score: \(score)"
             }
             
         }

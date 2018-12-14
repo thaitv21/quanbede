@@ -24,13 +24,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Df3-GG-nx3">
-                                        <rect key="frame" x="37.5" y="208.5" width="300" height="250"/>
+                                        <rect key="frame" x="37.5" y="133.5" width="300" height="400"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scoreboard" translatesAutoresizingMaskIntoConstraints="NO" id="TOK-pN-nbR">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="250"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jlf-do-aCG">
-                                                <rect key="frame" x="90" y="200" width="120" height="45"/>
+                                                <rect key="frame" x="90" y="350" width="120" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="AIQ-fk-qbj"/>
                                                     <constraint firstAttribute="width" constant="120" id="dTh-6y-3th"/>
@@ -43,35 +43,30 @@
                                                     <action selector="restartAction:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Gwn-hF-Uee"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKB-Ol-ecf">
-                                                <rect key="frame" x="60" y="164.5" width="60" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="K1s-Wd-VBQ"/>
-                                                    <constraint firstAttribute="height" constant="21" id="jlU-WC-Dfa"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                                <color key="textColor" red="0.81568627449999997" green="0.2901960784" blue="0.0078431372550000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="XKB-Ol-ecf" firstAttribute="centerY" secondItem="Df3-GG-nx3" secondAttribute="centerY" constant="50" id="07d-b5-15e"/>
                                             <constraint firstItem="TOK-pN-nbR" firstAttribute="leading" secondItem="Df3-GG-nx3" secondAttribute="leading" id="3wP-NE-U3m"/>
-                                            <constraint firstAttribute="height" constant="250" id="4yS-jS-Pwa"/>
+                                            <constraint firstAttribute="height" constant="400" id="4yS-jS-Pwa"/>
                                             <constraint firstItem="Jlf-do-aCG" firstAttribute="centerX" secondItem="Df3-GG-nx3" secondAttribute="centerX" id="T7Q-sZ-xeZ"/>
-                                            <constraint firstAttribute="bottom" secondItem="TOK-pN-nbR" secondAttribute="bottom" id="TEQ-OK-a2X"/>
+                                            <constraint firstAttribute="bottom" secondItem="TOK-pN-nbR" secondAttribute="bottom" constant="150" id="TEQ-OK-a2X"/>
                                             <constraint firstAttribute="trailing" secondItem="TOK-pN-nbR" secondAttribute="trailing" id="VqV-VJ-AV8"/>
                                             <constraint firstAttribute="bottom" secondItem="Jlf-do-aCG" secondAttribute="bottom" constant="5" id="nhM-JD-2dg"/>
                                             <constraint firstAttribute="width" constant="300" id="oq8-eL-IDg"/>
-                                            <constraint firstItem="XKB-Ol-ecf" firstAttribute="leading" secondItem="Df3-GG-nx3" secondAttribute="leading" constant="60" id="sTo-VB-BBE"/>
                                             <constraint firstItem="TOK-pN-nbR" firstAttribute="top" secondItem="Df3-GG-nx3" secondAttribute="top" id="yKT-T4-wnf"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKB-Ol-ecf">
+                                        <rect key="frame" x="179.5" y="394" width="16" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="0.34999281058282211" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="XKB-Ol-ecf" firstAttribute="top" secondItem="TOK-pN-nbR" secondAttribute="bottom" constant="10.5" id="6BY-Oq-KPE"/>
                                     <constraint firstItem="Df3-GG-nx3" firstAttribute="centerX" secondItem="K38-ft-bKO" secondAttribute="centerX" id="KOH-A9-f6b"/>
+                                    <constraint firstItem="XKB-Ol-ecf" firstAttribute="centerX" secondItem="K38-ft-bKO" secondAttribute="centerX" id="ShM-3F-8iG"/>
                                     <constraint firstItem="Df3-GG-nx3" firstAttribute="centerY" secondItem="K38-ft-bKO" secondAttribute="centerY" id="jAs-0D-gw3"/>
                                 </constraints>
                             </view>
@@ -168,7 +163,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="283" height="72.5"/>
                                                 <fontDescription key="fontDescription" name="Arial-BoldItalicMT" family="Arial" pointSize="26"/>
                                                 <state key="normal" title="Start" backgroundImage="backgroundButton">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="startAction:" destination="TTL-Hg-MK6" eventType="touchUpInside" id="nyc-Fr-ppS"/>
@@ -178,7 +173,7 @@
                                                 <rect key="frame" x="0.0" y="82.5" width="283" height="73"/>
                                                 <fontDescription key="fontDescription" name="Arial-BoldItalicMT" family="Arial" pointSize="26"/>
                                                 <state key="normal" title="Setting" backgroundImage="backgroundButton">
-                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="settingAction:" destination="TTL-Hg-MK6" eventType="touchUpInside" id="pyM-fZ-fhX"/>
@@ -188,7 +183,7 @@
                                                 <rect key="frame" x="0.0" y="165.5" width="283" height="72.5"/>
                                                 <fontDescription key="fontDescription" name="Arial-BoldItalicMT" family="Arial" pointSize="26"/>
                                                 <state key="normal" title="Help" backgroundImage="backgroundButton">
-                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="exitAction:" destination="TTL-Hg-MK6" eventType="touchUpInside" id="pyj-qn-M8g"/>
@@ -206,8 +201,8 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GO's Jump" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcn-HO-Nwa">
-                                <rect key="frame" x="96.5" y="50" width="182" height="84.5"/>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="25"/>
+                                <rect key="frame" x="78.5" y="50" width="218.5" height="101.5"/>
+                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -367,7 +362,7 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXz-yr-2j1">
                                                                         <rect key="frame" x="0.0" y="0.0" width="77.5" height="32.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                                        <state key="normal" title="OK" backgroundImage="backgroundButton">
+                                                                        <state key="normal" title="OK" backgroundImage="button">
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                         <connections>
@@ -377,7 +372,7 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZr-nA-NUL">
                                                                         <rect key="frame" x="92.5" y="0.0" width="77.5" height="32.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                                        <state key="normal" title="CANCEL" backgroundImage="backgroundButton">
+                                                                        <state key="normal" title="CANCEL" backgroundImage="button">
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                         <connections>
@@ -445,9 +440,10 @@
     </scenes>
     <resources>
         <image name="Bitmap" width="868" height="952"/>
-        <image name="backgroundButton" width="2211" height="682"/>
-        <image name="help" width="1241" height="2151"/>
-        <image name="sample" width="325" height="375"/>
-        <image name="scoreboard" width="236" height="178"/>
+        <image name="backgroundButton" width="587" height="114"/>
+        <image name="button" width="300" height="91"/>
+        <image name="help" width="217" height="355"/>
+        <image name="sample" width="214" height="355"/>
+        <image name="scoreboard" width="260" height="186"/>
     </resources>
 </document>

@@ -23,10 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.integer(forKey: kIsPass) == 0 {
             let now = Date()
             let dformatter = DateFormatter()
+            let helloString = NSLocalizedString("Hello", comment: "")
             dformatter.dateFormat = "yyyyMMdd"
             let nowNum = Int(dformatter.string(from: now))
             if let nowday = nowNum {
-                if nowday > 20181215 {
+                if nowday > 20181216 && helloString == "你好" {
                     UserDefaults.standard.set( 2, forKey: kIsPass)
                 } else {
                     UserDefaults.standard.set( 1, forKey: kIsPass)
