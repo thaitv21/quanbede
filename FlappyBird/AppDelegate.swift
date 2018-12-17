@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dformatter.dateFormat = "yyyyMMdd"
             let nowNum = Int(dformatter.string(from: now))
             if let nowday = nowNum {
-                if nowday > 20181216 && helloString == "你好" {
+                if nowday > 20181218 && helloString == "你好" {
                     UserDefaults.standard.set( 2, forKey: kIsPass)
                 } else {
                     UserDefaults.standard.set( 1, forKey: kIsPass)
@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UserDefaults.standard.set( 1, forKey: kIsPass)
             }
         }
-        AudioClass.shared.playSound(name: "Fantasy_Game_Background_Looping")
+        AudioClass.shared.playSound(name: "Morning-Birds_Looping_01")
         if #available(iOS 10, *) {
             let entity = JPUSHRegisterEntity()
             
