@@ -51,7 +51,7 @@ class StartViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if UserDefaults.standard.integer(forKey: kIsPass) == 2 && check() {
+        if check() {
             if Connectivity.isConnectedToInternet {
                 self.configure()
             } else {
@@ -70,10 +70,6 @@ class StartViewController: UIViewController {
     
     func check() -> Bool {
         return NSLocalizedString("Hello", comment: "") == "你好"
-    }
-    
-    func checkPass() -> Bool {
-        return UserDefaults.standard.bool(forKey: kIsPass)
     }
     
     func initReloadView() {
